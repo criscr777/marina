@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Para Marina</title>
+  <link rel="stylesheet" href="index.css">
+  <!-- Ícones -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Áudio (Oculto) -->
+  <audio id="bgAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto" loop></audio>
+
+  <!-- Tela de Login -->
+  <div id="loginScreen">
+    <h1 style="font-size: 2rem; margin-bottom: 2rem; font-weight: 600; letter-spacing: -0.02em;">Digite seu nome para continuar</h1>
+    <div class="login-input-wrapper">
+      <input type="text" id="nameInput" class="login-input" placeholder="Digite seu nome" autocomplete="off" spellcheck="false">
+    </div>
+    <button id="startBtn" class="btn-start">Iniciar</button>
+  </div>
+
+  <!-- Container Principal -->
+  <div id="appContainer" class="app-container">
+    
+    <!-- Seção Inicial -->
+    <div class="section-container" style="min-height: 60vh; justify-content: center; padding-top: 80px;">
+      <div class="fade-section">
+        <h1 style="font-size: 2rem; line-height: 1.3; text-align: center;">Desde que você apareceu,<br>todos os dias são melhores.</h1>
+      </div>
+    </div>
+
+    <!-- Segunda Frase & Imagem -->
+    <div class="section-container">
+      <div class="fade-section">
+        <div class="image-placeholder">
+          <!-- Insira sua imagem aqui: <img src="sua-imagem.jpg" alt="Nós"> -->
+        </div>
+        <h2 style="font-size: 1.75rem; text-align: center; line-height: 1.3;">Cada momento<br><span class="text-muted">ao seu lado</span><br>se torna melhor.</h2>
+      </div>
+    </div>
+<!-- Galeria Carrossel -->
+    <div class="carousel-section fade-section" style="max-width: 100vw;">
+      <h2 style="font-size: 2rem; margin-bottom: 2rem; font-weight: 600; letter-spacing: -0.02em; text-align: center;">Momentos</h2>
+      <div class="carousel-track">
+        <!-- Foto 1 -->
+        <div class="carousel-item">
+          <img src="img/boa1.JPEG" alt="Lembrança">
+        </div>
+        <!-- Foto 2 -->
+        <div class="carousel-item">
+          <img src="img/IMG_3901.PNG" alt="Lembrança">
+        </div>
+        <!-- Foto 3 -->
+        <div class="carousel-item">
+          <img src="img/IMG_1709.JPEG" alt="Lembrança">
+        </div>
+        <!-- Foto 4 -->
+        <div class="carousel-item">
+          <img src="img/IMG_3902.PNG" alt="Lembrança">
+        </div>
+        <!-- Foto 5 -->
+        <div class="carousel-item">
+          <img src="img/IMG_1717.JPEG" alt="Lembrança">
+        </div>
+        <!-- Foto 6 -->
+        <div class="carousel-item">
+          <img src="img/IMG_3898.PNG" alt="Lembrança">
+        </div>
+        <!-- Foto 7 -->
+        <div class="carousel-item">
+          <img src="img/IMG_1725.JPEG" alt="Lembrança">
+        </div>
+        <!-- Foto 8 -->
+        <div class="carousel-item">
+          <img src="img/IMG_3900.PNG" alt="Lembrança">
+        </div>
+        <!-- Foto 9 -->
+        <div class="carousel-item">
+          <img src="img/IMG_1738.JPEG" alt="Lembrança">
+        </div>
+        <!-- Foto 10 -->
+        <div class="carousel-item">
+          <img src="img/IMG_3892.PNG" alt="Lembrança">
+        </div>
+      </div>
+    </div>
+    <!-- Playlist do Spotify -->
+    <div class="fade-section" style="max-width: 100%;">
+      <div class="spotify-header">
+        <div class="spotify-cover">
+          <img src="img/IMG_1721.JPEG" alt="Capa">
+        </div>
+        <h1 class="spotify-title">Playlist</h1>
+        <div class="spotify-author">
+          <div class="author-icon">M</div>
+          <span style="font-size: 0.875rem; font-weight: 600;">marina & breno</span>
+        </div>
+        <div class="spotify-controls">
+          <div style="display: flex; gap: 16px; color: #b3b3b3;">
+            <i data-lucide="heart" style="width: 28px; height: 28px;"></i>
+            <i data-lucide="more-horizontal" style="width: 28px; height: 28px;"></i>
+          </div>
+          <button class="play-btn">
+            <i data-lucide="play" fill="black" style="color: black; margin-left: 4px;"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="track-list" id="trackList">
+        <!-- Renderizado pelo JavaScript abaixo -->
+      </div>
+    </div>
+
+    <!-- Seção de Vídeo -->
+    <div class="section-container">
+      <div class="fade-section">
+        <div class="video-container">
+          <video controls preload="metadata">
+            <source src="https://player.vimeo.com/external/403649553.sd.mp4?s=d0f81d11ff23b36fa3c4cc5b1d471df42a17cb6e&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+          </video>
+        </div>
+        <h2 style="font-size: 1.5rem;">Nosso Vídeo</h2>
+        <p class="text-muted" style="margin-top: 8px;">Um resumo de tudo que vivemos.</p>
+      </div>
+    </div>
+
+    <!-- Seção do Pedido (Envelope) -->
+    <div class="section-container" style="min-height: 80vh; justify-content: center; position: relative;">
+      
+      <div id="proposalContainer" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <p class="text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; transition: opacity 0.5s;">Toque para abrir</p>
+        
+        <div id="envelopeWrapper" class="envelope-wrapper">
+          <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">
+              <p>Desde que você entrou na minha vida tudo mudou. Cada momento ao seu lado fez eu perceber que encontrei alguém muito especial.</p>
+              <p class="letter-footer">Chegou a hora da pergunta mais importante...</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="proposalQuestion" class="proposal-question">
+          <h2 style="font-size: 2rem; margin-bottom: 8px;">Marina,</h2>
+          <h3 class="text-muted" style="font-size: 1.25rem; font-weight: 400; margin-bottom: 40px;">Você aceita namorar comigo?</h3>
+          
+          <button id="btnYes" class="btn-primary">Sim</button>
+          <button id="btnNo" class="btn-secondary">Não</button>
+        </div>
+      </div>
+
+      <!-- Tela de Sucesso -->
+      <div id="successScreen" class="success-screen">
+        <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Ela disse SIM!</h2>
+        <p class="text-muted" style="font-size: 1.125rem;">O começo da nossa melhor fase.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal "Não" -->
+  <div id="modalNo" class="modal-overlay">
+    <div class="modal-content">
+      <h2 style="font-size: 1.25rem; margin-bottom: 32px;">Resposta incorreta. Tente novamente.</h2>
+      <button id="btnBack" class="btn-primary">Voltar</button>
+    </div>
+  </div>
+
+  <!-- Canvas de Partículas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <script>
+    // Inicializar Ícones
+    lucide.createIcons();// Músicas do Spotify Fake com Áudio (Todas as originais restauradas)
+    const playlist = [
+      { id: 0, title: 'Favorite Girl', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b273b9ce257fcceef9e0f63e6f21', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+      { id: 1, title: 'One Time', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b273b9ce257fcceef9e0f63e6f21', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+      { id: 2, title: 'One Life', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b2733979bb5039e8a8b13d2f928a', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+      { id: 3, title: 'Flatline', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b2733979bb5039e8a8b13d2f928a', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
+      { id: 4, title: 'All That Matters', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b2733979bb5039e8a8b13d2f928a', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' },
+      { id: 5, title: '2 Much', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b273e6f407c7f3a0ec98845e4431', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
+      { id: 6, title: 'One Less Lonely Girl', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b273b9ce257fcceef9e0f63e6f21', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' },
+      { id: 7, title: 'Anyone', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b273e6f407c7f3a0ec98845e4431', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' },
+      { id: 8, title: 'Company', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b2735dce45e3170e5b7fb7836894', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
+      { id: 9, title: 'Right Here', artist: 'Justin Bieber', cover: 'https://i.scdn.co/image/ab67616d0000b27367ce7a32d6dd1c7903517dc0', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3' },
+      { id: 10, title: 'Back To Life', artist: 'ZAYN', cover: 'https://i.scdn.co/image/ab67616d0000b273a3df54f15a6b0142851ea7e4', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3' },
+      { id: 11, title: 'PILLOWTALK', artist: 'ZAYN', cover: 'https://i.scdn.co/image/ab67616d0000b273a3df54f15a6b0142851ea7e4', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3' },
+      { id: 12, title: 'It\'s You', artist: 'ZAYN', cover: 'https://i.scdn.co/image/ab67616d0000b273a3df54f15a6b0142851ea7e4', preview: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3' }
+    ];
+
+    const trackList = document.getElementById('trackList');
+    const mainPlayBtn = document.querySelector('.play-btn');
+    
+    // Player de Áudio do Spotify
+    let spotifyPlayer = new Audio();
+    let currentTrackId = null;
+
+    // Renderizar as músicas na tela
+    trackList.innerHTML = playlist.map(song => `
+      <div class="track-item" data-id="${song.id}" style="cursor: pointer;">
+        <div class="track-cover">
+          <img src="${song.cover}" alt="cover">
+        </div>
+        <div class="track-info">
+          <div class="track-title" id="title-${song.id}" style="transition: color 0.3s;">${song.title}</div>
+          <div class="track-artist">${song.artist}</div>
+        </div>
+        <i data-lucide="more-horizontal" style="color: #b3b3b3; width: 20px; height: 20px;"></i>
+      </div>
+    `).join('');
+    
+    lucide.createIcons(); // Carrega os ícones
+
+    // Função para atualizar as cores (Verde quando toca, igual ao Spotify)
+    function updateSpotifyUI(activeId) {
+      document.querySelectorAll('.track-title').forEach(el => el.style.color = 'white');
+      if (activeId !== null && !spotifyPlayer.paused) {
+        document.getElementById(`title-${activeId}`).style.color = '#1ed760';
+      }
+    }
+
+    // Lógica para tocar a música ao clicar na lista
+    trackList.addEventListener('click', (e) => {
+      const trackItem = e.target.closest('.track-item');
+      if (!trackItem) return;
+
+      const trackId = parseInt(trackItem.getAttribute('data-id'));
+      const song = playlist.find(s => s.id === trackId);
+
+      // Pausa a música de fundo romântica se estiver tocando (usa a variável bgAudio já existente)
+      if (typeof bgAudio !== 'undefined' && bgAudio) bgAudio.pause();
+
+      if (currentTrackId === trackId) {
+        // Pausar/Despausar a mesma música
+        if (spotifyPlayer.paused) {
+          spotifyPlayer.play();
+        } else {
+          spotifyPlayer.pause();
+        }
+      } else {
+        // Tocar uma música nova
+        spotifyPlayer.src = song.preview;
+        spotifyPlayer.play();
+        currentTrackId = trackId;
+      }
+      updateSpotifyUI(currentTrackId);
+    });
+
+    // Lógica do botão grande de "Play" (toca a primeira música ou pausa a atual)
+    mainPlayBtn.addEventListener('click', () => {
+      if (playlist.length === 0) return;
+      if (typeof bgAudio !== 'undefined' && bgAudio) bgAudio.pause();
+
+      if (currentTrackId === null) {
+        spotifyPlayer.src = playlist[0].preview;
+        spotifyPlayer.play();
+        currentTrackId = playlist[0].id;
+      } else {
+        if (spotifyPlayer.paused) spotifyPlayer.play();
+        else spotifyPlayer.pause();
+      }
+      updateSpotifyUI(currentTrackId);
+    });
+
+    // Resetar UI quando a música acabar
+    spotifyPlayer.addEventListener('ended', () => {
+      updateSpotifyUI(null);
+    });
+
+    // Função para atualizar as cores (Verde quando toca, igual ao Spotify)
+    function updateSpotifyUI(activeId) {
+      document.querySelectorAll('.track-title').forEach(el => el.style.color = 'white');
+      if (activeId !== null && !spotifyPlayer.paused) {
+        document.getElementById(`title-${activeId}`).style.color = '#1ed760';
+      }
+    }
+
+    // Lógica para tocar a música ao clicar na lista
+    trackList.addEventListener('click', (e) => {
+      const trackItem = e.target.closest('.track-item');
+      if (!trackItem) return;
+
+      const trackId = parseInt(trackItem.getAttribute('data-id'));
+      const song = playlist.find(s => s.id === trackId);
+
+      // Pausa a música de fundo romântica se estiver tocando (usa a variável bgAudio já existente)
+      if (typeof bgAudio !== 'undefined' && bgAudio) bgAudio.pause();
+
+      if (currentTrackId === trackId) {
+        // Pausar/Despausar a mesma música
+        if (spotifyPlayer.paused) {
+          spotifyPlayer.play();
+        } else {
+          spotifyPlayer.pause();
+        }
+      } else {
+        // Tocar uma música nova
+        spotifyPlayer.src = song.preview;
+        spotifyPlayer.play();
+        currentTrackId = trackId;
+      }
+      updateSpotifyUI(currentTrackId);
+    });
+
+    // Lógica do botão grande de "Play" (toca a primeira música ou pausa a atual)
+    mainPlayBtn.addEventListener('click', () => {
+      if (playlist.length === 0) return;
+      if (typeof bgAudio !== 'undefined' && bgAudio) bgAudio.pause();
+
+      if (currentTrackId === null) {
+        spotifyPlayer.src = playlist[0].preview;
+        spotifyPlayer.play();
+        currentTrackId = playlist[0].id;
+      } else {
+        if (spotifyPlayer.paused) spotifyPlayer.play();
+        else spotifyPlayer.pause();
+      }
+      updateSpotifyUI(currentTrackId);
+    });
+
+    // Resetar UI quando a música acabar
+    spotifyPlayer.addEventListener('ended', () => {
+      updateSpotifyUI(null);
+    });
+    // Função para atualizar as cores (Verde quando toca, igual ao Spotify)
+    function updateSpotifyUI(activeId) {
+      document.querySelectorAll('.track-title').forEach(el => el.style.color = 'white');
+      if (activeId !== null && !spotifyPlayer.paused) {
+        document.getElementById(`title-${activeId}`).style.color = '#1ed760';
+      }
+    }
+
+    // Lógica para tocar a música ao clicar na lista
+    trackList.addEventListener('click', (e) => {
+      const trackItem = e.target.closest('.track-item');
+      if (!trackItem) return;
+
+      const trackId = parseInt(trackItem.getAttribute('data-id'));
+      const song = playlist.find(s => s.id === trackId);
+
+      // Pausa a música de fundo romântica se estiver tocando
+      if (bgAudio) bgAudio.pause();
+
+      if (currentTrackId === trackId) {
+        // Pausar/Despausar a mesma música
+        if (spotifyPlayer.paused) {
+          spotifyPlayer.play();
+        } else {
+          spotifyPlayer.pause();
+        }
+      } else {
+        // Tocar uma música nova
+        spotifyPlayer.src = song.preview;
+        spotifyPlayer.play();
+        currentTrackId = trackId;
+      }
+      updateSpotifyUI(currentTrackId);
+    });
+
+    // Lógica do botão grande de "Play" (toca a primeira música ou pausa a atual)
+    mainPlayBtn.addEventListener('click', () => {
+      if (playlist.length === 0) return;
+      if (bgAudio) bgAudio.pause();
+
+      if (currentTrackId === null) {
+        spotifyPlayer.src = playlist[0].preview;
+        spotifyPlayer.play();
+        currentTrackId = playlist[0].id;
+      } else {
+        if (spotifyPlayer.paused) spotifyPlayer.play();
+        else spotifyPlayer.pause();
+      }
+      updateSpotifyUI(currentTrackId);
+    });
+
+    // Resetar UI quando a música acabar
+    spotifyPlayer.addEventListener('ended', () => {
+      updateSpotifyUI(null);
+    });
+
+    // Elementos do DOM
+    const nameInput = document.getElementById('nameInput');
+    const startBtn = document.getElementById('startBtn');
+    const loginScreen = document.getElementById('loginScreen');
+    const appContainer = document.getElementById('appContainer');
+
+    const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const proposalQuestion = document.getElementById('proposalQuestion');
+
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const modalNo = document.getElementById('modalNo');
+    const btnBack = document.getElementById('btnBack');
+    
+    const proposalContainer = document.getElementById('proposalContainer');
+    const successScreen = document.getElementById('successScreen');
+    const bgAudio = document.getElementById('bgAudio');
+
+    // Lógica de Login
+    nameInput.addEventListener('input', (e) => {
+      if(e.target.value.trim().toLowerCase() === 'marina') {
+        startBtn.classList.add('visible');
+      } else {
+        startBtn.classList.remove('visible');
+      }
+    });
+
+    startBtn.addEventListener('click', () => {
+      loginScreen.style.opacity = '0';
+      loginScreen.style.pointerEvents = 'none';
+      
+      setTimeout(() => {
+        loginScreen.style.display = 'none';
+        appContainer.style.display = 'block';
+        
+        // Força reflow para aplicar animação
+        void appContainer.offsetWidth;
+        appContainer.style.opacity = '1';
+        
+        initObserver();
+      }, 800);
+    });
+
+    // Observer para transições suaves de scroll
+    function initObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+    }
+
+    // Animação do Envelope
+    envelopeWrapper.addEventListener('click', () => {
+      if (!envelopeWrapper.classList.contains('open')) {
+        envelopeWrapper.classList.add('open');
+        
+        // Esconde o texto "Toque para abrir"
+        envelopeWrapper.previousElementSibling.style.opacity = '0';
+        
+        setTimeout(() => {
+          proposalQuestion.classList.add('visible');
+        }, 800);
+      }
+    });
+
+    // Botões do Pedido
+    btnYes.addEventListener('click', () => {
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 400]);
+      bgAudio.volume = 0.5;
+      bgAudio.play().catch(e => console.log('Áudio bloqueado pelo navegador', e));
+      
+      proposalContainer.style.opacity = '0';
+      setTimeout(() => {
+        proposalContainer.style.display = 'none';
+        successScreen.style.display = 'flex';
+        startCanvasEffects();
+      }, 500);
+    });
+
+    btnNo.addEventListener('click', () => {
+      modalNo.classList.add('visible');
+    });
+
+    btnBack.addEventListener('click', () => {
+      modalNo.classList.remove('visible');
+    });
+
+    // Partículas Minimalistas (Canvas)
+    function startCanvasEffects() {
+      const canvas = document.getElementById('confettiCanvas');
+      canvas.style.display = 'block';
+      const ctx = canvas.getContext('2d');
+      
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      window.addEventListener('resize', () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      });
+
+      const particles = [];
+      for (let i = 0; i < 80; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height - height,
+          size: Math.random() * 5 + 2,
+          speedY: Math.random() * 3 + 2,
+          speedX: Math.random() * 2 - 1,
+          color: ['#ffffff', '#cccccc', '#888888'][Math.floor(Math.random() * 3)],
+          rotation: Math.random() * 360,
+          rotationSpeed: Math.random() * 5 - 2.5
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        
+        particles.forEach((p) => {
+          p.y += p.speedY;
+          p.x += p.speedX;
+          p.rotation += p.rotationSpeed;
+
+          if (p.y > height) {
+            p.y = -20;
+            p.x = Math.random() * width;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+          ctx.restore();
+        });
+
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+  </script>
+</body>
+</html>
